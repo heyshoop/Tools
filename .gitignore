@@ -1,0 +1,8 @@
+.vscode
+*.html
+*.txt
+.DS_Store
+.iml
+.xml
+.idea
+.vscode
