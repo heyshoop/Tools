@@ -8,10 +8,7 @@
 
 from Crypto.Cipher import AES
 from Crypto.Hash import MD5
-from binascii import a2b_hex,b2a_hex
-import getpass
-import os
-import time
+from binascii import a2b_hex
 
 #补全字符
 def align(str,isKey=False):
@@ -38,6 +35,34 @@ def decrypt_CBC(str,key):
     paint = AESCipher.decrypt(a2b_hex(str))
     return paint
 
+#读取文件并解密
+def detext(name,key):
+    try:
+        fcipher = open(name,'r')
+        fpaint = open('readme.txt','w+')
+        #读取密文文件
+        fcipherText = fcipher.read()
+        #读取密文和校验哈希值
+        cipherText = fcipherText.split(',')[0]
+        painhash = fcipherText.split(',')[1]
+        #用密码解密
+        painText = decrypt_CBC(cipherText,key)
+        #去除\0
+        painText = painText.decode().rstrip('\0')
+        #校验密码
+        #计算本次解密后明文的哈希值
+        MD5hash = MD5.new()
+        MD5hash.update(painText.encode())
+        #比对哈希值判断密码是否正确
+        if painhash != MD5hash.hexdigest():
+            print('密码错误!')
+        else:
+            fpaint.write(painText)
+            fpaint.close()
+            fcipher.close()
+            print('解密成功！')
+    except:
+        print('解密失败，密码错误!')
 
 if __name__ == '__main__':
-    print(decrypt_CBC('450c23408b90feeb97100f2c9c3c8225','bbb'))
+    detext('enpw.txt','key')

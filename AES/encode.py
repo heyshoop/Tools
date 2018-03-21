@@ -8,8 +8,6 @@
 from Crypto.Cipher import AES
 from binascii import b2a_hex
 from Crypto.Hash import MD5
-import base64
-import os
 
 #补全字符
 def align(str,isKey=False):
@@ -56,8 +54,9 @@ def entext(name,key):
             fcipher.write(cipherText)
             fcipher.close()
         fpaint.close()
-    except BaseException as e:
-                print(e)
+        print('加密成功！')
+    except:
+        print('加密出错！')
 
 if __name__ == '__main__':
     entext('pw.txt','key')
