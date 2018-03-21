@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# @Time    : 2018/3/17 下午4:53
+# @Time    : 2018/3/21 上午10:26
 # @Author  : Anchor
-# @File    : encode.py
-# @Des     : 加密
+# @File    : decode.py
+# @Des     : 解密
+
 
 from Crypto.Cipher import AES
-from binascii import b2a_hex
+from Crypto.Hash import MD5
+from binascii import a2b_hex,b2a_hex
+import getpass
+import os
+import time
 
 #补全字符
 def align(str,isKey=False):
@@ -23,19 +28,16 @@ def align(str,isKey=False):
             str = str + '\0'
         return str
 
-#CBC模式加密
-def encrypt_CBC(str,key):
+#CBC模式解密
+def decrypt_CBC(str,key):
     #补全字符串
-    str = align(str)
     key = align(key,True)
-    #初始化AES，引入初始向量
+    #初始化AES
     AESCipher = AES.new(key,AES.MODE_CBC,'1234567890123456')
-    #加密
-    cipher = AESCipher.encrypt(str)
-    return b2a_hex(cipher)
-
-
+    #解密
+    paint = AESCipher.decrypt(a2b_hex(str))
+    return paint
 
 
 if __name__ == '__main__':
-    print(encrypt_CBC('aaa','bbb'))
+    print(decrypt_CBC('450c23408b90feeb97100f2c9c3c8225','bbb'))
