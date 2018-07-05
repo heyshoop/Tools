@@ -65,4 +65,4 @@ def detext(name,key):
         print('解密失败，密码错误!')
 
 if __name__ == '__main__':
-    detext('enpw.txt','key')
+    detext('enpw.txt','key')#数字
