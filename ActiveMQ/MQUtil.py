@@ -20,7 +20,7 @@ class SampleListener(object):
 
 # 推送到队列queue
 def send_to_queue(msg):
-    conn = stomp.Connection10([('172.16.63.130', 61613)])
+    conn = stomp.Connection10([('172.16.63.132', 8090)])
     conn.start()
     conn.connect()
     conn.send(queue_name, msg)
@@ -29,7 +29,7 @@ def send_to_queue(msg):
 
 # 推送到主题
 def send_to_topic(msg):
-    conn = stomp.Connection10([('172.16.63.130', 61613)])
+    conn = stomp.Connection10([('172.16.63.132', 8090)])
     conn.start()
     conn.connect()
     conn.send(topic_name, msg)
@@ -38,7 +38,7 @@ def send_to_topic(msg):
 
 ##从队列接收消息
 def receive_from_queue():
-    conn = stomp.Connection10([('172.16.63.130', 61613)])
+    conn = stomp.Connection10([('172.16.63.132', 8090)])
     conn.set_listener(listener_name, SampleListener())
     conn.start()
     conn.connect()
@@ -49,7 +49,7 @@ def receive_from_queue():
 
 ##从主题接收消息
 def receive_from_topic():
-    conn = stomp.Connection10([('172.16.63.130', 61613)])
+    conn = stomp.Connection10([('172.16.63.132', 8090)])
     conn.set_listener(listener_name, SampleListener())
     conn.start()
     conn.connect()
@@ -62,7 +62,7 @@ def receive_from_topic():
 
 
 if __name__ == '__main__':
-    #send_to_queue('len 123')
+    #send_to_queue('len 1234')
     receive_from_queue()
     #receive_from_topic()
 
