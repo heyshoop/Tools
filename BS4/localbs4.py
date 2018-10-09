@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import re
 
 try:
-    html = open('./BS4/JXD-01672邵明腾.html','r')
+    html = open('','r')
     bsObj = BeautifulSoup(html.read(),"html.parser")
     allinfo = bsObj.findAll('input',{'cet':re.compile(r'(Text|DateTime)')})
     for info in allinfo:
