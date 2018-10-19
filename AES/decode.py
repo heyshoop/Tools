@@ -39,7 +39,7 @@ def decrypt_CBC(str,key):
 def detext(name,key):
     try:
         fcipher = open(name,'r')
-        fpaint = open('readme.txt','w+')
+        fpaint = open('pw.txt','w+')
         #读取密文文件
         fcipherText = fcipher.read()
         #读取密文和校验哈希值

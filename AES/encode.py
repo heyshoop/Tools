@@ -59,4 +59,4 @@ def entext(name,key):
         print('加密出错！')
 
 if __name__ == '__main__':
-    entext('pw.txt','key')
+    entext('pw.txt','数字')

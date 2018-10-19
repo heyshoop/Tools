@@ -4,7 +4,8 @@
 from socket import *
 
 c = socket(AF_INET,SOCK_STREAM)
-c.connect(('127.0.0.1',6666))
+port = socket.getservbyname("http", "tcp")
+c.connect(('dce9e46e.ngrok.io',port))
 text = c.recv(1024)
 print(text)
 c.send(b'Hello world')
